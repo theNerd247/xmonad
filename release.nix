@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 
 let
   xrandr = pkgs.fetchzip
@@ -15,6 +15,14 @@ let
       (builtins.readFile "${xmonad}/xmonad.hs");
 in
 {
+  environment.systemPackages = with pkgs;
+    [ haskellPackages.xmobar
+      dmenu
+      xsecurelock
+      xorg.xbacklight
+      termite
+    ];
+
   services.xserver.windowManager = 
   {
     default = "xmonad";
