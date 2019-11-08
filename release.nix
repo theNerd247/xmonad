@@ -13,15 +13,16 @@ let
       ["./xmobarcc"] 
       ["${xmonad}/xmobarcc"] 
       (builtins.readFile "${xmonad}/xmonad.hs");
+
+  isSlim = config.services.xserver.displayManager.slim.enable;
 in
 {
   environment.systemPackages = with pkgs;
     [ haskellPackages.xmobar
       dmenu
-      xsecurelock
       xorg.xbacklight
       termite
-    ];
+    ] ++ if isSlim then [] else [ xsecurelock ];
 
   services.xserver.windowManager = 
   {
