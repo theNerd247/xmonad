@@ -22,7 +22,7 @@ in
       dmenu
       xorg.xbacklight
       termite
-    ] ++ if isSlim then [] else [ xsecurelock ];
+    ] ++ (if isSlim then [] else [ xsecurelock ]);
 
   services.xserver.windowManager = 
   {
