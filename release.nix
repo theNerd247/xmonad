@@ -2,16 +2,24 @@
 
 let
   xrandr = pkgs.fetchzip
-    { url = https://github.com/theNerd247/xmonad-contrib-xrandr/archive/v0.3.0-apha.2.tar.gz;
-      sha256 = "1n0vqh6frapycwb7qc23182q7wfl83fc1d2pbm1biqax1qz5nva6";
+    { url = https://github.com/theNerd247/xmonad-contrib-xrandr/archive/v0.4.0-alpha.tar.gz;
+      sha256 = "1w50zyfi7dfp3x669967i53y13ywzzfpqn2rd0nfxrybnaakxfr0";
     };
+
+  xmonad = (pkgs.callPackage ./default.nix {});
+  
+  xmonadConfig = 
+    builtins.replaceStrings 
+      ["./xmobarcc"] 
+      ["${xmonad}/xmobarcc"] 
+      (builtins.readFile "${xmonad}/xmonad.hs");
 in
 {
   services.xserver.windowManager = 
   {
     default = "xmonad";
     xmonad = {
-      config = ./xmonad.hs;
+      config = xmonadConfig;
       enable = true;
       enableContribAndExtras = true;
       extraPackages = (hpkgs: [ hpkgs.xrandr ]);

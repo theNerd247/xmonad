@@ -143,7 +143,7 @@ myEventHooks =
 
 myXmobar = statusBar myXmobarCmd myXmobarPP toggleStrutsKey
   where
-    myXmobarCmd = "xmobar -o /home/noah/.xmonad/xmobarcc"
+    myXmobarCmd = "xmobar -o ./xmobarcc"
     myXmobarPP = xmobarPP 
                   { ppCurrent = xmobarColor "#859900" "" . wrap "[" "]"
                   , ppVisible = xmobarColor "#2aa198" "" . wrap "(" ")"
