@@ -22,7 +22,6 @@ import Xrandr
 {-import XMonad.Actions.WorkspaceBacklight-}
 
 modmask = mod4Mask
-home = "/home/noah/"
 
 -- default applications
 webbrowser = "google-chrome-stable"
@@ -55,7 +54,7 @@ volToggle =
 bckLightDown = "xbacklight -dec 5"
 bckLightUp = "xbacklight -inc 5"
 
-lockScreen = "xsecurelock"
+lockScreen = "slimlock"
 
 instance (Typeable a) => ExtensionClass (Maybe a) where
   initialValue = Nothing
